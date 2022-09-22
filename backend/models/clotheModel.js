@@ -1,5 +1,5 @@
 const mongoose= require('mongoose')
-const clotheSchema= mongoose.Schema({
+const clotheSchema=new mongoose.Schema({
 name:{
     type:String,
     required:[true,"You have to enter clothe name"]
@@ -18,18 +18,23 @@ rating:{
     type:Number,
     default:0   
 },
-images:[{
-    public_id:{
+images:[
+ {
+
+  public_id:
+    {
         type:String,
         required:true
     },
 
-    url:{
+    url:
+    {
         type:String,
         required:true
 
     }
-}],
+}
+],
 category:{
     type:String,
     required:[true,"Please enter clothe's category"]
@@ -44,7 +49,8 @@ numberOfReviews:{
     type:Number,
     default:0
 },
-reviews:[{
+reviews:[
+    {
     name:{
         type:String,
         required:true
@@ -64,4 +70,4 @@ createdAt:{
     }
 })
 
-mongoose.exports= mongoose.model("Clothe",clotheSchema);//mongoose.model compiles the clotheSchema
+module.exports= mongoose.model("Clothe",clotheSchema);//mongoose.model compiles the clotheSchema
