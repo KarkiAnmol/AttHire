@@ -18,6 +18,21 @@
     })
   }
 
+  //get a single product detail
+   exports.getProductDetails =async(req,res,next)=>{
+    const product = await Product.findById(req.params.id);
+    if(!product){   // if product is not found
+      res.status(500).json({
+        success:false,
+        message:"the product is not found"
+      })
+    }
+    res.status(200).json({
+      success:true,
+      product
+    })
+  }
+
   //update product
   exports.updateProduct =async(req,res)=>{
     let product = await Product.findById(req.params.id);
@@ -52,23 +67,3 @@
       message:"The Product is deleted"
     })
   }
-  // exports.deleteProduct = async(req,res,next ) =>{
-  //     const product = await Product.findById(req.params.id);
-        
-  //     if(!product){
-  //       return res.status(500).json({
-  //         success:false,
-  //         message:"the product is not found"
-  //       })
-  //     }
-      
-  //     await product.remove();
-      
-      
-  //     res.status(200).json({
-  //       success:true,
-  //       message:"Product deleted "
-  //     })
-  
-  //   }
-  
