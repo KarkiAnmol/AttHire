@@ -51,7 +51,7 @@ numberOfReviews:{
 },
 reviews:[
     {
-    name:{
+    name:{  
         type:String,
         required:true
     },
@@ -66,7 +66,8 @@ reviews:[
 }],
 createdAt:{
         type:Date,
-        default:Date.now
+        immutable:true,//doesnot let anyone change the created date once it's created
+        default:()=>Date.now //A function is created which runs every time this script is updated and returns the recent date
     }
 })
 

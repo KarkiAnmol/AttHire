@@ -18,4 +18,22 @@
     })
   }
 
-  
+  //update product
+  exports.updateProduct =async(req,res)=>{
+    let product = await Product.findById(req.params.id);
+    if(!product){
+      res.status(500).json({
+        success:false,
+        message:"the product is not found"
+      })
+    }
+    product =await Product.findByIdAndUpdate(req.params.id,req.body,{
+        new:true,
+        runValidators:true,
+        useFindAndModify:false
+    });
+    res.status(200).json({
+      success:true,
+      product
+    })
+  }
