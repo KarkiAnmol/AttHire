@@ -11,7 +11,6 @@ process.on("uncaughtException",(err)=>{
     console.log("Shutting down the server due to Uncaught Exception");
     process.exit(1);
 });
-console.log(xd);
 //set config
 dotenv.config({path:"backend/config/config.env"}); 
 
