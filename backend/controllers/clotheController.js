@@ -1,6 +1,7 @@
   const Product= require("../models/clotheModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncError= require("../middleware/catchAsyncError");
+const ApiFeatures = require("../utils/apifeatures");
 
   //create product by admin 
   exports.createProduct= catchAsyncError(async(req,res,next)=>{
@@ -13,7 +14,8 @@ const catchAsyncError= require("../middleware/catchAsyncError");
 
   //get all products
   exports.getAllProducts =catchAsyncError(async(req,res) =>{ //a middleware function named getAllClothes which returns a repsonse that the routes are working fine
-    const products= await Product.find();
+    const apifeatures=new ApiFeatures(Product.find(),req.query).search();
+    const products= await apifeatures.query;   
     res.status(200).json({
         success:true,
         products
