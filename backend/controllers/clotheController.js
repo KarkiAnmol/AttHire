@@ -14,7 +14,8 @@ const ApiFeatures = require("../utils/apifeatures");
 
   //get all products
   exports.getAllProducts =catchAsyncError(async(req,res) =>{ //a middleware function named getAllClothes which returns a repsonse that the routes are working fine
-    const apifeatures=new ApiFeatures(Product.find(),req.query).search().filter();
+    const resultPerPage=5;
+    const apifeatures=new ApiFeatures(Product.find(),req.query).search().filter().pagination(resultPerPage);
     const products= await apifeatures.query;   
     res.status(200).json({
         success:true,

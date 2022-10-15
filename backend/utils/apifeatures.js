@@ -43,6 +43,12 @@ class ApiFeatures{
 
 
     }
+    pagination(resultPerPage){
+        const currentPage=Number(this.queryStr.page) || 1;
+        const jump =resultPerPage*(currentPage-1);
+        this.query=this.query.limit(resultPerPage).skip(jump);
+        return this;
+    }
 
 };
 module.exports =ApiFeatures;
