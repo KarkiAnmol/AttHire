@@ -9,9 +9,9 @@ app.use(express.json());
 
 //importing routes
 const clothe = require("./routes/clotheRoute");
-
+const user=require("./routes/userRoutes");
 app.use("/api/v1",clothe)  ;
-
+app.use("/api/v1",user);
 //Error middleware
 app.use(errorMiddleware);
 
