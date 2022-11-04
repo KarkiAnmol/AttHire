@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require("bcryptjs"); //requiring module for password encryption
 const userSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -41,5 +42,12 @@ const userSchema = new mongoose.Schema({
 
 }
 );
+userSchema.pre("save",async function(next){
+    if(!this.isModified("password")){ //checks if password is not modified, if found modified then it will be encrypted else it won't be encrypted again
+        next();
+    }
+
+    this.password= await bcrypt.hash(this.password,10);
+})
 
 module.exports =mongoose.model("User",userSchema);
