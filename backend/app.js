@@ -1,11 +1,14 @@
 const express = require("express"); //importing express module
 var bodyParser = require("body-parser");
 const app =express(); //calling the express() function which puts a  new express application inside the 'app' variable
+
+const cookieParser = require("cookie-parser");
 const errorMiddleware= require("./middleware/Error");
 
 
   app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.json());
+app.use(cookieParser());
 
 //importing routes
 const clothe = require("./routes/clotheRoute");

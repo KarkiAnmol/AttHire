@@ -1,4 +1,4 @@
-//file for creatinf token and storing tokens as cookies instead of storing it in the local storage
+//file for creating token and storing tokens as cookies instead of storing it in the local storage
 const sendToken = (user,statusCode,res) =>{
     const token = user.getJWTToken();
 
