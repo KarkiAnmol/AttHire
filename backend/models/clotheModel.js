@@ -64,6 +64,12 @@ reviews:[
         required:true
     }
 }],
+
+user:{
+    type:mongoose.Schema.ObjectId,
+    ref:"User",
+    required:true,
+},
 createdAt:{
         type:Date,
         immutable:true,//doesnot let anyone change the created date once it's created
