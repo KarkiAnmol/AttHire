@@ -1,0 +1,18 @@
+//file for creatinf token and storing tokens as cookies instead of storing it in the local storage
+const sendToken = (user,statusCode,res) =>{
+    const token = user.getJWTToken();
+
+    //options variable for cookie
+    const options = {
+        expires: new Date(
+            Date.now() + process.env.COOKIE_EXPIRE * 24*60*60*1000 //expires in 3 days
+        ),
+        httpOnly:true,
+    };
+    res.status(statusCode).cookie('token',token,options).json({
+        success:true,
+        user,
+        token,
+    });
+};
+module.exports=sendToken;

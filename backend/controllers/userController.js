@@ -1,6 +1,7 @@
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncError= require("../middleware/catchAsyncError");
 const User=require("../models/userModel");
+const sendToken = require("../utils/jwtToken");
 
 //Register a User
 exports.registerUser = catchAsyncError(async(req,res,next)=>{
@@ -14,16 +15,18 @@ exports.registerUser = catchAsyncError(async(req,res,next)=>{
         }
     });
     
-    const token = user.getJWTToken();
+    // const token = user.getJWTToken();
     
-    res.status(201).json({
-        success:true,
-        token,
-    });
+    // res.status(201).json({
+    //     success:true,
+    //     token,
+    // });
+    sendToken(user,201,res);
 });
 
 //login user
-exports.loginUser = catchAsyncError(async(req,res,next)=>{
+exports.loginUser = catchAsyncError(async(req,res,next)=>
+{
     const {email,password} =req.body;
 
     //checking if user has given email and password both
@@ -31,7 +34,9 @@ exports.loginUser = catchAsyncError(async(req,res,next)=>{
         return next(new ErrorHandler("Please enter both email and password!!!"),400)
     }
     
+
     const user =await User.findOne({email}).select("+password"); //can't use password in findOne because it has been declared false previously while writing schema
+   
     
     if(!user){
     return next(new ErrorHandler("Invalid email or password"));
@@ -42,11 +47,6 @@ exports.loginUser = catchAsyncError(async(req,res,next)=>{
     if(!isPasswordMatched){
         return next(new ErrorHandler("Invalid email or password",401));
     }
-    const token = user.getJWTToken();
-    
-    res.status(200).json({
-        success:true,
-        token,
-    });
-    
+   
+    sendToken(user,200,res);
 });
