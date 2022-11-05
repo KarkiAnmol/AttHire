@@ -2,6 +2,7 @@ const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncError= require("../middleware/catchAsyncError");
 const User=require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
+const sendEmail =require("../utils/sendEmail.js");
 
 //Register a User
 exports.registerUser = catchAsyncError(async(req,res,next)=>{
@@ -66,3 +67,49 @@ exports.logout =catchAsyncError(async(req,res,next)=>
         message:"logged out",
     });
 })
+
+
+//forgot password
+
+exports.forgotPassword = catchAsyncError(async(req,res,next)=>{
+
+    const user = await User.findOne({email:req.body.email});
+
+    if(!user){
+        return next(new ErrorHandler ("user not found",404) );
+    }
+
+    //get resetPassword Token
+   const resetToken = user.getResetPasswordToken();
+   await user.save({validateBeforeSave:false});
+
+   //sending reset email link
+
+   //    const resetPasswordUrl= `http://localhost/api/v1/password/reset/${resetToken}` //for local host only
+    
+    const resetPasswordUrl= `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`; //req.protocol could be http or https
+
+    const message = `Hello ${user.name},\n Your password reset token is : \n\n\n ${resetPasswordUrl}  \n\n If you haven't requested this email then please ignore it and report this event to us at atthireofficial@gmail.com`
+    //using try catch to send message and email link
+    try{
+        await sendEmail({
+
+            email:user.email,
+            subject: `AttHire Password Recovery`,
+            message,
+        });
+        res.status(200).json({
+            success:true,
+            message: `Email sent to ${user.email} successfully`,
+        });
+    }
+    catch(error){
+        user.resetPasswordToken=undefined;
+        user.resetPasswordExpire=undefined;
+
+        await user.save({ validateBeforeSave: false});
+        return next(new ErrorHandler(error.message,500));
+
+    }
+
+});

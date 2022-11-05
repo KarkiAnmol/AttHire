@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require("bcryptjs"); //requiring module for password encryption
 const jwt = require("jsonwebtoken"); //
+const crypto = require("crypto");
+
 const userSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -62,5 +64,19 @@ userSchema.methods.getJWTToken  = function(){
 //comparing password
 userSchema.methods.comparePassword= async function(enteredPassword){
     return bcrypt.compare(enteredPassword,this.password);
+}
+
+
+//Generating a password reset token
+userSchema.methods.getResetPasswordToken = function(){
+
+//generating token
+const resetToken = crypto.randomBytes(20).toString("hex");
+
+//hashing the resetPasswordToken cryptographically and adding it to userSchema
+this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");//sha256 is a cryptograhic hashing algorithm which helps to generate a unique string of characters from a piece of input text
+
+this.resetPasswordExpire =Date.now() + 15*60*1000; 
+return resetToken;
 }
 module.exports =mongoose.model("User",userSchema);
