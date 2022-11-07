@@ -211,5 +211,45 @@ exports.updateUserProfile =catchAsyncError(async(req,res,next)=>{
     });
 res.status(200).json({
     success:true,
-})});
+});
+});
 
+//Update User Role ADMIN
+exports.updateUserRole =catchAsyncError(async(req,res,next)=>{
+
+
+    const newUserData={
+        name:req.body.name,
+        email:req.body.email,
+        role:req.body.role,
+    };
+
+    // image will be added later
+    const user =await User.findByIdAndUpdate(req.user.id,newUserData,{
+        new:true,
+        runValidators:true,
+        useFindndModify:false,
+
+    });
+res.status(200).json({
+    success:true,
+});
+
+});
+
+//Delete User profile -ADMIN
+exports.deleteUser =catchAsyncError(async(req,res,next)=>{
+
+ 
+ const user =await User.findByIdAndDelete(req.params.id);
+ if(!user){
+    return next(new ErrorHandler(`User doesnot exist with ID: ${req.params.id}`));
+ }
+ 
+ await user.remove();
+
+ res.status(200).json({
+    success:true,
+ });
+
+});
