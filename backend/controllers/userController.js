@@ -173,6 +173,26 @@ await user.save();
 sendToken(user,200,res);
 });
 
+//get all users ADMIN
+exports.getAllUsers=catchAsyncError(async(req,res,next)=>{
+const users= await User.find();
+res.status(200).json({
+    success:true,
+    users,
+});
+});
+//get single user ADMIN
+exports.getSingleUser= catchAsyncError(async(req,res,next)=>{
+const user = await User.findById(req.params.id);
+if(!user){
+    return next (new ErrorHandler(`User doesnot exist with id : ${req.params.id}`));
+}
+res.status(200).json({
+    success:true,
+    user,
+});
+});
+
 
 //Update User profile
 exports.updateUserProfile =catchAsyncError(async(req,res,next)=>{
@@ -192,3 +212,4 @@ exports.updateUserProfile =catchAsyncError(async(req,res,next)=>{
 res.status(200).json({
     success:true,
 })});
+
