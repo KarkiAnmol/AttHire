@@ -116,11 +116,12 @@ exports.forgotPassword = catchAsyncError(async(req,res,next)=>{
 });
 
 exports.resetPassword =catchAsyncError(async(req,res,next)=>{
-    //creating hash token
+    // creating hash token
     const resetPasswordToken = crypto
     .createHash("sha256")
     .update(req.params.token)
     .digest("hex");
+    
 
 
     const user = await user.findOne({
@@ -141,4 +142,15 @@ exports.resetPassword =catchAsyncError(async(req,res,next)=>{
     await user.save();
     sendToken(user,200,res);  
 
-})
+});
+
+
+
+//Get user details
+exports.getUserDetails=catchAsyncError(async(req,res,next)=>{
+    const user = await User.findById(req.user.id);
+    res.status(200).json({
+        success:true,
+        user,
+    });
+});
