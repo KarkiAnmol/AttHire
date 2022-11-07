@@ -14,7 +14,7 @@ price:{
     required:[true,"Please enter price of clothe"],
     maxLength:[7,"price cannot exceed 7 figures"]
 },
-rating:{
+ratings:{
     type:Number,
     default:0   
 },
@@ -51,6 +51,11 @@ numberOfReviews:{
 },
 reviews:[
     {
+    user:{
+        type:mongoose.Schema.ObjectId,
+        ref:"User",
+        required:true,
+         },
     name:{  
         type:String,
         required:true
@@ -65,11 +70,7 @@ reviews:[
     }
 }],
 
-user:{
-    type:mongoose.Schema.ObjectId,
-    ref:"User",
-    required:true,
-},
+
 createdAt:{
         type:Date,
         immutable:true,//doesnot let anyone change the created date once it's created
