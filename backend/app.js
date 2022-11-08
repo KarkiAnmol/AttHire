@@ -13,8 +13,10 @@ app.use(cookieParser());
 //importing routes
 const clothe = require("./routes/clotheRoute");
 const user=require("./routes/userRoutes");
+const order =require("./routes/orderRoute");
 app.use("/api/v1",clothe)  ;
 app.use("/api/v1",user);
+app.use("/api/v1",order);
 //Error middleware
 app.use(errorMiddleware);
 

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const orderSchema= new mongoose.Schema({
-    shippinhInfo:{
+    shippingInfo:{
         address:{
             type:String,
             required:true
@@ -10,8 +10,8 @@ const orderSchema= new mongoose.Schema({
             type:String,
             required:true
         },
-        state:{
-            type:String,
+        province:{
+            type:Number,
             required:true
         },
         country:{
