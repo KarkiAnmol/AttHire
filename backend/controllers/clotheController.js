@@ -121,3 +121,51 @@ const ApiFeatures = require("../utils/apifeatures");
       success:true,
     });
   });
+
+
+  //get all reviews of a product
+  exports.getProductReviews =catchAsyncError(async(req,res,next)=>{
+    const product = await Product.findById(req.query.id);
+
+    if(!product){
+      return next(new ErrorHandler("product not found",404));
+    }
+
+
+    res.status(200).json({
+      success:true,
+      reviews:product.reviews,
+    });
+  });
+
+  //delete review
+  
+  //delete review of a product
+  exports.deleteReview =catchAsyncError(async(req,res,next)=>{
+    const product = await Product.findById(req.query.productId);
+
+    if(!product){
+      return next(new ErrorHandler("product not found",404));
+    }
+    const reviews = product.reviews.filter((rev)=>rev._id.toString() !== req.query.id.toString());//saving all the products whose review is not to be deleted  //id=review id
+    
+    let avg=0;
+    product.reviews.forEach((rev)=>{
+      avg+=rev.rating;
+    });
+
+    const ratings=avg/reviews.length;
+    const numberOfReviews=reviews.length;
+    await product.findByIdAndUpdate(req.query.productId,{
+      reviews,ratings,numberOfReviews,
+    },{
+      new:true,
+      runValidators:true,
+      useFindAndModify:false,
+    });
+    res.status(200).json({
+      success:true,
+    });
+  });
+
+
