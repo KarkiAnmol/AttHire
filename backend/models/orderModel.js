@@ -100,7 +100,7 @@ const orderSchema= new mongoose.Schema({
     orderStatus:{
         type:String,
         required:true,
-        default:"Order Processing",
+        default:"Order Processing"
     },
     deliveredAt:Date,
     createdAt:{
@@ -109,4 +109,4 @@ const orderSchema= new mongoose.Schema({
     },
 
 });
-module.exports=mongoose.model("order",orderSchema);
+module.exports=mongoose.model("Order",orderSchema);
