@@ -1,5 +1,5 @@
 .banner {
-  background-image: linear-gradient(to right,#635dc0,#3027ae);
+  background-image: url("../../images/cover.jfif");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -135,4 +135,4 @@
     margin: 0 0.5vmax;
     font: 300 1vmax "Roboto";
   }
-} 
+}
