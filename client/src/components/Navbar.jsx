@@ -90,7 +90,7 @@ color:white;
 cursor:pointer;
 margin-bottom:10px;
 `;
-const Navbar = () => {
+const Navbar = (item) => {
     const quantity= useSelector(state=>state.cart.quantity)
     console.log(quantity)
     return (
@@ -107,37 +107,37 @@ const Navbar = () => {
                     </Link>
                     </Left>
                     <MFH>
-                    <Link to='/productlist' style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
+                    <Link to={`/products/Male`}  style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
                         <Logo>
                             <button style={{ border: "none", background: "white", fontSize: 14, cursor: "pointer", paddingRight: "5px" }}>MALE</button>
 
                         </Logo>
                     </Link>
-                    <Link to='/productlist' style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
+                    <Link to={`/products/Female`} style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
                         <Logo>
                             <button style={{ border: "none", background: "white", fontSize: 14, cursor: "pointer", paddingRight: "5px" }}>FEMALE</button>
 
                         </Logo>
                     </Link>
-                    <Link to='/productlist' style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
+                    <Link to={`/products/Kids`} style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
                         <Logo>
                             <button style={{ border: "none", background: "white", fontSize: 14, cursor: "pointer", paddingRight: "5px" }}>KIDS</button>
 
                         </Logo>
                     </Link>
-                    <Link to='/productlist' style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
+                    <Link to={`/products/Trending`} style={{ textDecoration: 'none', color: 'black', cursor: 'pointer' }}>
                         <Logo>
                             <button style={{ border: "none", background: "white", fontSize: 14, fontWeight: 600, cursor: "pointer", padding: "5px" }}>TRENDING</button>
                         </Logo>
                     </Link>
                     </MFH>
                 <Center>
-                    <SearchContainer>
+                    {/* <SearchContainer>
                         <Input placeholder='Search' />
                         <Link to='/' style={{ color: 'black', cursor: 'pointer' }}>
                             <Search style={{ color: "gray", fontSize: 20, alignItem: Center }} />
                         </Link>
-                    </SearchContainer>
+                    </SearchContainer> */}
                 </Center>
                 <Right>
                     <Link to='/Seller' style={{ color: 'black', cursor: 'pointer' }}><Button>Become a seller</Button></Link>

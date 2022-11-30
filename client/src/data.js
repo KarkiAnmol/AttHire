@@ -1,24 +1,24 @@
-
+import axios from "axios";
 export const sliderItems =[
   {
       id: 1,
       img: "https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title:"Long Leather Coat PEGASUS 37",
+      title:"Shop With Atthire",
       desc:"THE WAIT IS OVER A BEAUTIFUL BLEND OF DESIGN AND TECHNOLOGY IN EVERY STEP OF YOU RUNNING",
       bg:"f5f5f5",
   },
   {
       id: 2,
-      img: "https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title:"Long Leather Coat PEGASUS 37 2",
-      desc:"THE WAIT IS OVER A BEAUTIFUL BLEND OF DESIGN AND TECHNOLOGY IN EVERY STEP OF YOU RUNNING",
+      img: "https://images.pexels.com/photos/12992109/pexels-photo-12992109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      title:"Be a part of Atthire",
+      desc:"A STYLE FOR EVERY STORY",
       bg:"f5f5f5",
   },
   {
       id: 3,
-      img: "https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title:"Long Leather Coat PEGASUS 37 3",
-      desc:"THE WAIT IS OVER A BEAUTIFUL BLEND OF DESIGN AND TECHNOLOGY IN EVERY STEP OF YOU RUNNING",
+      img: "https://images.pexels.com/photos/1964970/pexels-photo-1964970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      title:"Passion for fashion",
+      desc:"SHOP ALOT, SPEND A LITTLE",
       bg:"f5f5f5",
   }
 ]
@@ -27,19 +27,19 @@ export const categories = [
   {
       id: 1,
       img: "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title:"SHIRT STYLE",
+      title:"MALE",
       cat:"Male",
   },
   {
       id: 2,
       img: "https://images.pexels.com/photos/5885995/pexels-photo-5885995.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title:"LOUNGEWEAR LOVE",
+      title:"FEMALE",
       cat:"Female",
   },
   {
       id: 3,
-      img: "https://images.pexels.com/photos/179909/pexels-photo-179909.jpeg",
-      title:"LIGHT JACKETS",
+      img: "https://images.pexels.com/photos/3771639/pexels-photo-3771639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      title:"KIDS",
       cat:"Kids",
   }
 ]
@@ -48,7 +48,7 @@ export const categories = [
 export const sliderClick = (slider)=>{
   alert("Hello World");
 }
-export const slides =[
+export const slides= [
   {image:'https://picsum.photos/200/300',title:"this is a First title",description:"this is a First description", clickEvent:sliderClick},
   {image:'https://picsum.photos/600/500',title:"this is a Second title",description:"this is a Second description",clickEvent:sliderClick},
   {image:'https://picsum.photos/400/300',title:"this is a Third title",description:"this is a Third description",clickEvent:sliderClick},

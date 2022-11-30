@@ -3,7 +3,7 @@ import styled from 'styled-components'
 //import {useState} from 'react';
 import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@material-ui/icons'
 import { mobile } from '../responsive';
-
+import axios from "axios";
 const LowerContainer = styled.div`
     height:90vh;
     width:100%;
@@ -107,7 +107,7 @@ const SliderCardDescription =  styled.p`
     font-size:13px;
     font-family: 'Barlow', sans-serif;
 `
-const LowerContent = (props) => {
+const LowerContent = (props,{item}) => {
     //const slides = [1,2,3,4,5,6,7,8];
     const slideLeft = ()=>{
         var slider = document.getElementById("slider");
@@ -128,7 +128,7 @@ const LowerContent = (props) => {
                     </Arrow>
                     <Slider id = "slider">
                     {
-                        props.slides.map((slide,index)=>{
+                        props.slides.map((slide,index,{item})=>{
                             return(
                                 <SliderCard key ={index} onClick ={()=>slide.clickEvent()}>
                                     <SliderCardImage style={{backgroundImage:`url(${slide.image})`,backgroundSize:'cover'}}></SliderCardImage>

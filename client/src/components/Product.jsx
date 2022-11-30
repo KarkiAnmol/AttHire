@@ -41,14 +41,16 @@ const Container = styled.div`
 const Circle = styled.div`
   width: 200px;
   height: 200px;
-  border-radius: 50%;
+  border-radius: 10px;
   background-color: white;
   position: absolute;
 `;
 
 const Image = styled.img`
   height: 75%;
+  width: 50%;
   z-index: 2;
+  border-radius: 10px;
 `;
 
 const Icon = styled.div`
@@ -70,7 +72,7 @@ const Icon = styled.div`
 const Product = ({ item }) => {
   return (
     <Container>
-      <Circle />
+      <Circle/>
       <Image src={item.img} />
       <Info>
         <Icon>
