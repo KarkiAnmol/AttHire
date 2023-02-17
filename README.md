@@ -1,6 +1,8 @@
 # AttHire Backend
 
-AttHire is an e-commerce website built with Node.js, MongoDB, and Express. This repository contains the backend code of AttHire. The backend provides various functionalities required for the website to function.
+Welcome to the AttHire backend repository - your one-stop e-commerce destination for all things trendy and stylish. Built with Node.js, MongoDB, and Express, AttHire offers a seamless shopping experience with features like user registration, cart and payment functionality, and the ability to create and review products. With a user-friendly interface and powerful search and filter features, finding your next favorite item has never been easier.
+
+
 
 # Features
 The backend of AttHire contains the following features:
