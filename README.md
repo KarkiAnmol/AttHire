@@ -12,9 +12,13 @@ The backend of AttHire contains the following features:
 ⦾ Cart and payment functionality.
 
 ⦾ Ability to create products, product reviews, and product ratings.
+
 ⦾ Filter functionality, search feature, and pagination.
+
 ⦾ User with admin privilege can access the user's details except their password, which is protected by encryption.
+
 ⦾ Admin can check the total number of orders and individual user's orders.
+
 ⦾ Middleware created for handling errors such as async error, errors that occur when a user enters the wrong ID, unhandled promise rejection, unhandled caught exceptions, and errors that crash the server when a product is not found.
 
 # Installation
